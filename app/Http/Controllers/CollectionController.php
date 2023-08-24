@@ -41,7 +41,13 @@ class CollectionController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $collection = Collection::find($id);
+
+        if (is_null($collection)) {
+            return response()->json(['error' => 'Collection not found'], 403);
+        }
+
+        return response()->json($collection, 200);
     }
 
     /**

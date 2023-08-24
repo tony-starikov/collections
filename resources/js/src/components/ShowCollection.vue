@@ -1,12 +1,7 @@
 <template>
-    <div class="container py-3">
-        <div class="row">
-            <div class="col-12">
-                <router-link class="btn btn-primary" :to="{name: 'CreateCollection'}">Create new collection</router-link>
-            </div>
-        </div>
-        <div class="row pb-3">
-            <div class="col-lg-6 col-xl-4 mt-3" v-for="(collection, index) in collections" :key="index">
+    <div class="container">
+        <div class="row mt-3">
+            <div class="col-12 col-md-8 col-xl-6 mx-auto">
                 <div class="card h-100">
                     <div class="card-body">
                         <h5 class="card-title">#{{ collection.id }}: {{ collection.title }}</h5>
@@ -18,11 +13,6 @@
                         </h4>
                         <a target="_blank" v-bind="{ href: collection.link }">Link</a>
                     </div>
-                    <div class="card-footer">
-                        <router-link class="btn btn-primary" :to="{ name: 'ShowCollection', params: { id: collection.id }}">
-                            Info
-                        </router-link>
-                    </div>
                 </div>
             </div>
         </div>
@@ -33,23 +23,29 @@
 import axios from "axios";
 
 export default {
-    name: "Home",
+    name: "ShowCollection",
     data(){
         return {
-            collections: [],
+            collection: {
+                id: '',
+                title: '',
+                description: '',
+                total_amount: '',
+                link: '',
+            }
         }
     },
     methods: {
-        getCollections() {
-            axios.get('/api/collections').then(response => {
-                this.collections = response.data;
+        getCollection() {
+            axios.get(`/api/collections/${this.$route.params.id}`).then(response => {
+                this.collection = response.data;
             }).catch(errors => {
                 console.log(errors);
             });
         },
     },
     created() {
-        this.getCollections();
+        this.getCollection();
     }
 };
 </script>
