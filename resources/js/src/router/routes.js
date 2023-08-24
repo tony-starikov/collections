@@ -1,6 +1,7 @@
 import Home from '../components/Home.vue';
 import CreateCollection from '../components/CreateCollection.vue';
 import ShowCollection from '../components/ShowCollection.vue';
+import UpdateCollection from '../components/UpdateCollection.vue';
 
 const routes = [
     {
@@ -17,6 +18,11 @@ const routes = [
         path: '/show/:id',
         component: ShowCollection,
         name: "ShowCollection"
+    },
+    {
+        path: '/update/:id',
+        component: UpdateCollection,
+        name: "UpdateCollection"
     },
 ]
 

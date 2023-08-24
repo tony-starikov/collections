@@ -22,6 +22,9 @@
                         <router-link class="btn btn-primary" :to="{ name: 'ShowCollection', params: { id: collection.id }}">
                             Info
                         </router-link>
+                        <router-link class="ms-1 btn btn-primary" :to="{ name: 'UpdateCollection', params: { id: collection.id }}">
+                            Update
+                        </router-link>
                     </div>
                 </div>
             </div>

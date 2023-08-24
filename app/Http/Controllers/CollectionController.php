@@ -55,7 +55,24 @@ class CollectionController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $validated = $request->validate([
+            'title' => 'required|string',
+            'description' => 'required|string',
+            'target_amount' => 'required|numeric',
+            'link' => 'required|string',
+        ]);
+
+        $parameters = $request->all();
+
+        $collection = Collection::find($id);
+
+        if (is_null($collection)) {
+            return response()->json(['error' => 'Collection not found'], 403);
+        }
+
+        $collection->update($parameters);
+
+        return response()->json($collection, 200);
     }
 
     /**
