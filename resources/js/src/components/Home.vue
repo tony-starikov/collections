@@ -25,6 +25,9 @@
                         <router-link class="ms-1 btn btn-primary" :to="{ name: 'UpdateCollection', params: { id: collection.id }}">
                             Update
                         </router-link>
+                        <button class="ms-1 btn btn-primary" @click="handleDelete(collection.id)">
+                            Delete
+                        </button>
                     </div>
                 </div>
             </div>
@@ -50,6 +53,17 @@ export default {
                 console.log(errors);
             });
         },
+        handleDelete(id) {
+            if (confirm("Delete this collection?")) {
+                axios.delete('api/collections/' + id).then(response => {
+                    console.log(response.data);
+                }).catch(errors => {
+                    console.log(errors);
+                });
+
+                this.getCollections();
+            }
+        }
     },
     created() {
         this.getCollections();

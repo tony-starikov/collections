@@ -66,9 +66,7 @@ class CollectionController extends Controller
 
         $collection = Collection::find($id);
 
-        if (is_null($collection)) {
-            return response()->json(['error' => 'Collection not found'], 403);
-        }
+
 
         $collection->update($parameters);
 
@@ -80,6 +78,14 @@ class CollectionController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $collection = Collection::find($id);
+
+        if (is_null($collection)) {
+            return response()->json(['error' => 'Collection not found'], 403);
+        }
+
+        $collection->delete();
+
+        return response()->json(['success' => 'Collection deleted'], 200);
     }
 }
