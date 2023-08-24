@@ -22,7 +22,18 @@ class CollectionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'title' => 'required|string',
+            'description' => 'required|string',
+            'target_amount' => 'required|numeric',
+            'link' => 'required|string',
+        ]);
+
+        $input = $request->all();
+
+        $collection = Collection::create($input);
+
+        return response()->json($collection, 200);
     }
 
     /**

@@ -1,5 +1,10 @@
 <template>
     <div class="container py-3">
+        <div class="row">
+            <div class="col-12">
+                <router-link class="btn btn-primary" :to="{name: 'CreateCollection'}">Create new collection</router-link>
+            </div>
+        </div>
         <div class="row pb-3">
             <div class="col-lg-6 col-xl-4 mt-3" v-for="(collection, index) in collections" :key="index">
                 <div class="card h-100">
