@@ -1,0 +1,50 @@
+<template>
+    <div class="container py-3">
+        <div class="row pb-3">
+            <div class="col-lg-6 col-xl-4 mt-3" v-for="(collection, index) in collections" :key="index">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">#{{ collection.id }}: {{ collection.title }}</h5>
+                        <p class="card-text">
+                            {{ collection.description }}
+                        </p>
+                        <h4>
+                            {{ collection.target_amount }} UAH
+                        </h4>
+                        <a target="_blank" v-bind="{ href: collection.link }">Link</a>
+                    </div>
+                    <div class="card-footer">
+                        <button class="btn btn-primary">
+                            Info
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+
+<script>
+import axios from "axios";
+
+export default {
+    name: "Home",
+    data(){
+        return {
+            collections: [],
+        }
+    },
+    methods: {
+        getCollections() {
+            axios.get('/api/collections').then(response => {
+                this.collections = response.data;
+            }).catch(errors => {
+                console.log(errors);
+            });
+        },
+    },
+    created() {
+        this.getCollections();
+    }
+};
+</script>
