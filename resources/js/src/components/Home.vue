@@ -3,6 +3,7 @@
         <div class="row">
             <div class="col-12">
                 <router-link class="btn btn-primary" :to="{name: 'CreateCollection'}">Create new collection</router-link>
+                <router-link class="ms-1 btn btn-primary" :to="{name: 'CreateContributor'}">Create new contribution</router-link>
             </div>
         </div>
         <div class="row pb-3">

@@ -1,6 +1,6 @@
 <?php
 
-use Illuminate\Http\Request;
+use App\Http\Controllers\ContributorController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CollectionController;
 
@@ -16,3 +16,4 @@ use App\Http\Controllers\CollectionController;
 */
 
 Route::apiResource('collections', CollectionController::class);
+Route::apiResource('contributors', ContributorController::class);

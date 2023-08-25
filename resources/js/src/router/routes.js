@@ -2,6 +2,7 @@ import Home from '../components/Home.vue';
 import CreateCollection from '../components/CreateCollection.vue';
 import ShowCollection from '../components/ShowCollection.vue';
 import UpdateCollection from '../components/UpdateCollection.vue';
+import CreateContributor from '../components/CreateContributor.vue';
 
 const routes = [
     {
@@ -10,7 +11,7 @@ const routes = [
         name: "Home"
     },
     {
-        path: '/create',
+        path: '/create-collection',
         component: CreateCollection,
         name: "CreateCollection"
     },
@@ -23,6 +24,11 @@ const routes = [
         path: '/update/:id',
         component: UpdateCollection,
         name: "UpdateCollection"
+    },
+    {
+        path: '/create-contributor',
+        component: CreateContributor,
+        name: "CreateContributor"
     },
 ]
 
