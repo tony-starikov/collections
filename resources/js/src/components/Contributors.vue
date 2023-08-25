@@ -19,6 +19,9 @@
                         <router-link class="btn btn-primary" :to="{ name: 'ShowContributor', params: { id: contributor.id }}">
                             Info
                         </router-link>
+                        <router-link class="ms-1 btn btn-primary" :to="{ name: 'UpdateContributor', params: { id: contributor.id }}">
+                            Update
+                        </router-link>
                     </div>
                 </div>
             </div>

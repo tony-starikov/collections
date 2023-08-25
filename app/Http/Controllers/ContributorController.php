@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ContributorStoreRequest;
+use App\Http\Requests\ContributorUpdateRequest;
 use App\Http\Resources\ContributorResource;
 use App\Models\Contributor;
-use Illuminate\Http\Request;
 
 class ContributorController extends Controller
 {
@@ -38,15 +38,17 @@ class ContributorController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(ContributorUpdateRequest $request, Contributor $contributor)
     {
-        //
+        $contributor->update($request->validated());
+
+        return new ContributorResource($contributor);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Contributor $contributor)
     {
         //
     }
