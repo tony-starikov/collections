@@ -4,6 +4,7 @@ import ShowCollection from '../components/ShowCollection.vue';
 import UpdateCollection from '../components/UpdateCollection.vue';
 import CreateContributor from '../components/CreateContributor.vue';
 import Contributors from '../components/Contributors.vue';
+import ShowContributor from '../components/ShowContributor.vue';
 
 const routes = [
     {
@@ -35,6 +36,11 @@ const routes = [
         path: '/contributors',
         component: Contributors,
         name: "Contributors"
+    },
+    {
+        path: '/contributors/:id',
+        component: ShowContributor,
+        name: "ShowContributor"
     },
 ]
 

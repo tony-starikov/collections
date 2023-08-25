@@ -15,6 +15,11 @@
                             {{ contributor.amount }} UAH
                         </h4>
                     </div>
+                    <div class="card-footer">
+                        <router-link class="btn btn-primary" :to="{ name: 'ShowContributor', params: { id: contributor.id }}">
+                            Info
+                        </router-link>
+                    </div>
                 </div>
             </div>
         </div>
