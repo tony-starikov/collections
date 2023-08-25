@@ -38,13 +38,13 @@ export default {
     methods: {
         getCollection() {
             axios.get(`/api/collections/${this.$route.params.id}`).then(response => {
-                this.collection = response.data;
+                this.collection = response.data.data;
             }).catch(errors => {
                 console.log(errors);
             });
         },
     },
-    created() {
+    mounted() {
         this.getCollection();
     }
 };

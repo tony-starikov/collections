@@ -49,10 +49,10 @@ export default {
     methods: {
         getCollection() {
             axios.get('/api/collections/' + this.$route.params.id).then(response => {
-                this.collection.title = response.data.title;
-                this.collection.description = response.data.description;
-                this.collection.target_amount = response.data.target_amount;
-                this.collection.link = response.data.link;
+                this.collection.title = response.data.data.title;
+                this.collection.description = response.data.data.description;
+                this.collection.target_amount = response.data.data.target_amount;
+                this.collection.link = response.data.data.link;
             });
         },
         handleUpdate() {
@@ -70,7 +70,7 @@ export default {
             this.collection.link = '';
         }
     },
-    created() {
+    mounted() {
         this.getCollection();
     }
 };

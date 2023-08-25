@@ -49,9 +49,8 @@ export default {
     methods: {
         handleStore() {
             axios.post('/api/collections', this.storeData).then(response => {
-                console.log(response);
-                console.log(response.data);
-            }).catch(error => console.log(error));
+                console.log(response.data.data);
+            }).catch(res => console.log(res));
             this.clearStoreForm();
             this.$router.push({ name: 'Home' });
         },

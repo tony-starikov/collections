@@ -48,7 +48,8 @@ export default {
     methods: {
         getCollections() {
             axios.get('/api/collections').then(response => {
-                this.collections = response.data;
+                // console.log(response);
+                this.collections = response.data.data;
             }).catch(errors => {
                 console.log(errors);
             });
@@ -65,7 +66,7 @@ export default {
             }
         }
     },
-    created() {
+    mounted() {
         this.getCollections();
     }
 };

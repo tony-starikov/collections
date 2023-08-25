@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CollectionStoreRequest;
+use App\Http\Resources\CollectionResource;
 use App\Models\Collection;
-use Illuminate\Http\Request;
 
 class CollectionController extends Controller
 {
@@ -12,78 +13,42 @@ class CollectionController extends Controller
      */
     public function index()
     {
-        $collections = Collection::all();
-
-        return response()->json($collections, 200);
+        return CollectionResource::collection(Collection::all());
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(CollectionStoreRequest $request)
     {
-        $validated = $request->validate([
-            'title' => 'required|string',
-            'description' => 'required|string',
-            'target_amount' => 'required|numeric',
-            'link' => 'required|string',
-        ]);
+        $collection = Collection::create($request->validated());
 
-        $input = $request->all();
-
-        $collection = Collection::create($input);
-
-        return response()->json($collection, 200);
+        return new CollectionResource($collection);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Collection $collection)
     {
-        $collection = Collection::find($id);
-
-        if (is_null($collection)) {
-            return response()->json(['error' => 'Collection not found'], 403);
-        }
-
-        return response()->json($collection, 200);
+        return new CollectionResource($collection);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(CollectionStoreRequest $request, Collection $collection)
     {
-        $validated = $request->validate([
-            'title' => 'required|string',
-            'description' => 'required|string',
-            'target_amount' => 'required|numeric',
-            'link' => 'required|string',
-        ]);
+        $collection->update($request->validated());
 
-        $parameters = $request->all();
-
-        $collection = Collection::find($id);
-
-
-
-        $collection->update($parameters);
-
-        return response()->json($collection, 200);
+        return new CollectionResource($collection);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Collection $collection)
     {
-        $collection = Collection::find($id);
-
-        if (is_null($collection)) {
-            return response()->json(['error' => 'Collection not found'], 403);
-        }
-
         $collection->delete();
 
         return response()->json(['success' => 'Collection deleted'], 200);
