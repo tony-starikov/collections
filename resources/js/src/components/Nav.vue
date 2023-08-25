@@ -10,7 +10,10 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mb-2 mb-lg-0 w-100 justify-content-center">
                     <li class="nav-item">
-                        <router-link class="nav-link" aria-current="page" :to="{name: 'Home'}">Home</router-link>
+                        <router-link class="nav-link" aria-current="page" :to="{name: 'Home'}">Collections</router-link>
+                    </li>
+                    <li class="nav-item">
+                        <router-link class="nav-link" aria-current="page" :to="{name: 'Contributors'}">Contributors</router-link>
                     </li>
                 </ul>
                 <div class="d-flex">
