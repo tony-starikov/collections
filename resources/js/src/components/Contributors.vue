@@ -22,6 +22,9 @@
                         <router-link class="ms-1 btn btn-primary" :to="{ name: 'UpdateContributor', params: { id: contributor.id }}">
                             Update
                         </router-link>
+                        <button class="ms-1 btn btn-primary" @click="handleDelete(contributor.id)">
+                            Delete
+                        </button>
                     </div>
                 </div>
             </div>
@@ -48,6 +51,17 @@ export default {
                 console.log(errors);
             });
         },
+        handleDelete(id) {
+            if (confirm("Delete this contribution?")) {
+                axios.delete('api/contributors/' + id).then(response => {
+                    console.log(response.data);
+                }).catch(errors => {
+                    console.log(errors);
+                });
+
+                this.getContributors();
+            }
+        }
     },
     mounted() {
         this.getContributors();

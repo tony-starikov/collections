@@ -50,6 +50,8 @@ class ContributorController extends Controller
      */
     public function destroy(Contributor $contributor)
     {
-        //
+        $contributor->delete();
+
+        return response()->json(['success' => 'Contributor deleted'], 200);
     }
 }
