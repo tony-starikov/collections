@@ -11,6 +11,10 @@
                     <button class="btn btn-outline-success" type="submit">Search</button>
                 </form>
             </div>
+            <div class="col-12 mt-3">
+                <button @click="filterFromLess" type="button" class="btn btn-outline-primary">Target amount <i class="bi bi-chevron-double-up"></i></button>
+                <button @click="filterFromMore" type="button" class="ms-1 btn btn-outline-primary">Target amount <i class="bi bi-chevron-double-down"></i></button>
+            </div>
         </div>
         <div class="row pb-3">
             <div class="col-lg-6 col-xl-4 mt-3" v-for="(collection, index) in collections" :key="index">
@@ -81,7 +85,23 @@ export default {
                 console.log(response.data.data)
             }).catch(res => console.log(res));
             this.search.search_amount = '';
-        }
+        },
+        filterFromLess() {
+            axios.get('/api/collections/filter-less').then(response => {
+                // console.log(response);
+                this.collections = response.data.data;
+            }).catch(errors => {
+                console.log(errors);
+            });
+        },
+        filterFromMore() {
+            axios.get('/api/collections/filter-more').then(response => {
+                // console.log(response);
+                this.collections = response.data.data;
+            }).catch(errors => {
+                console.log(errors);
+            });
+        },
     },
     mounted() {
         this.getCollections();

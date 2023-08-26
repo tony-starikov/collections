@@ -17,6 +17,8 @@ use App\Http\Controllers\CollectionController;
 */
 
 Route::post('/collections/search', [SearchController::class, 'search']);
+Route::get('/collections/filter-less', [SearchController::class, 'filterFromLess']);
+Route::get('/collections/filter-more', [SearchController::class, 'filterFromMore']);
 
 Route::apiResource('collections', CollectionController::class);
 Route::apiResource('contributors', ContributorController::class);
