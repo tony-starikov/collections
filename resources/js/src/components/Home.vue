@@ -1,9 +1,15 @@
 <template>
-    <div class="container py-3">
+    <div class="container pb-3">
         <div class="row">
-            <div class="col-12">
+            <div class="col-lg-6 mt-3">
                 <router-link class="btn btn-primary" :to="{name: 'CreateCollection'}">Create new collection</router-link>
                 <router-link class="ms-1 btn btn-primary" :to="{name: 'CreateContributor'}">Create new contribution</router-link>
+            </div>
+            <div class="col-lg-6 mt-3">
+                <form class="d-flex" action="#" @submit.prevent="handleSearch">
+                    <input v-model="search.search_amount" class="form-control me-2" type="number" placeholder="Search collections where amount less than..." aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
             </div>
         </div>
         <div class="row pb-3">
@@ -44,6 +50,9 @@ export default {
     data(){
         return {
             collections: [],
+            search: {
+                search_amount: '',
+            }
         }
     },
     methods: {
@@ -65,6 +74,13 @@ export default {
 
                 this.getCollections();
             }
+        },
+        handleSearch() {
+            axios.post('/api/collections/search', this.search).then(response => {
+                this.collections = response.data.data;
+                console.log(response.data.data)
+            }).catch(res => console.log(res));
+            this.search.search_amount = '';
         }
     },
     mounted() {
