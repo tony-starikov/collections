@@ -26,10 +26,13 @@
                         </h4>
                     </div>
                     <div class="card-footer">
-                        <router-link class="ms-1 btn btn-primary" :to="{ name: 'UpdateCollection', params: { id: collection.id }}">
+                        <router-link class="btn btn-primary" :to="{ name: 'ShowContributor', params: { id: contributor.id }}">
+                            Info
+                        </router-link>
+                        <router-link class="ms-1 btn btn-primary" :to="{ name: 'UpdateContributor', params: { id: contributor.id }}">
                             Update
                         </router-link>
-                        <button class="ms-1 btn btn-primary" @click="handleDelete(collection.id)">
+                        <button class="ms-1 btn btn-primary" @click="handleDelete(contributor.id)">
                             Delete
                         </button>
                     </div>
@@ -66,6 +69,17 @@ export default {
                 console.log(errors);
             });
         },
+        handleDelete(id) {
+            if (confirm("Delete this contribution?")) {
+                axios.delete('api/contributors/' + id).then(response => {
+                    console.log(response.data);
+                }).catch(errors => {
+                    console.log(errors);
+                });
+
+                this.getCollection();
+            }
+        }
     },
     mounted() {
         this.getCollection();
