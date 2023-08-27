@@ -15,6 +15,15 @@
                     <li class="nav-item">
                         <router-link class="nav-link" aria-current="page" :to="{name: 'Contributors'}">Contributors</router-link>
                     </li>
+                    <li class="nav-item">
+                        <router-link class="nav-link" aria-current="page" :to="{name: 'Login'}">Login</router-link>
+                    </li>
+                    <li class="nav-item">
+                        <router-link class="nav-link" aria-current="page" :to="{name: 'Register'}">Register</router-link>
+                    </li>
+                    <li class="nav-item">
+                        <router-link class="nav-link" aria-current="page" :to="{name: 'Logout'}">Logout</router-link>
+                    </li>
                 </ul>
                 <div class="d-flex">
                     <a target="_blank" href="https://github.com/tony-starikov" class="btn btn-link text-end" style="min-width: 10vw;">
@@ -27,7 +36,24 @@
 </template>
 
 <script>
+
 export default {
-    name: "Nav"
+    name: "Nav",
+    data() {
+        return {
+            token: null
+        }
+    },
+    methods: {
+        getToken() {
+            this.token = localStorage.getItem('my_token');
+        }
+    },
+    mounted() {
+        this.getToken();
+    },
+    updated() {
+        this.getToken();
+    }
 }
 </script>

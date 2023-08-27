@@ -6,6 +6,9 @@ import CreateContributor from '../components/CreateContributor.vue';
 import Contributors from '../components/Contributors.vue';
 import ShowContributor from '../components/ShowContributor.vue';
 import UpdateContributor from '../components/UpdateContributor.vue';
+import Login from '../components/Login.vue';
+import Register from '../components/Register.vue';
+import Logout from '../components/Logout.vue';
 
 const routes = [
     {
@@ -47,6 +50,21 @@ const routes = [
         path: '/update-contributor/:id',
         component: UpdateContributor,
         name: "UpdateContributor"
+    },
+    {
+        path: '/login',
+        component: Login,
+        name: "Login"
+    },
+    {
+        path: '/register',
+        component: Register,
+        name: "Register"
+    },
+    {
+        path: '/logout',
+        component: Logout,
+        name: "Logout"
     },
 ]
 

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ContributorController;
 use App\Http\Controllers\SearchController;
 use Illuminate\Support\Facades\Route;
@@ -16,9 +17,18 @@ use App\Http\Controllers\CollectionController;
 |
 */
 
-Route::post('/collections/search', [SearchController::class, 'search']);
-Route::get('/collections/filter-less', [SearchController::class, 'filterFromLess']);
-Route::get('/collections/filter-more', [SearchController::class, 'filterFromMore']);
+Route::controller(AuthController::class)->group(function () {
+    Route::post('login', 'login');
+    Route::post('register', 'register');
+});
 
-Route::apiResource('collections', CollectionController::class);
-Route::apiResource('contributors', ContributorController::class);
+Route::middleware('auth:sanctum')->group(function () {
+    Route::post('/collections/search', [SearchController::class, 'search']);
+    Route::get('/collections/filter-less', [SearchController::class, 'filterFromLess']);
+    Route::get('/collections/filter-more', [SearchController::class, 'filterFromMore']);
+
+    Route::apiResource('collections', CollectionController::class);
+    Route::apiResource('contributors', ContributorController::class);
+
+    Route::post('logout', 'logout');
+});
