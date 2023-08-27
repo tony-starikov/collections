@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ContributorUpdateRequest extends FormRequest
+class CollectionUpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,8 +22,10 @@ class ContributorUpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'user_name' => 'string',
-            'amount' => 'numeric',
+            'title' => 'string',
+            'description' => 'string',
+            'target_amount' => 'numeric',
+            'link' => 'string',
         ];
     }
 }
