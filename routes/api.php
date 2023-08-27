@@ -17,8 +17,10 @@ use App\Http\Controllers\CollectionController;
 |
 */
 
-Route::get('/login', [AuthController::class, 'login']);
-Route::get('/register', [AuthController::class, 'register']);
+Route::controller(AuthController::class)->group(function () {
+    Route::post('/login', 'login');
+    Route::post('/register', 'register');
+});
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::post('/collections/search', [SearchController::class, 'search']);
