@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CollectionStoreRequest;
+use App\Http\Requests\CollectionUpdateRequest;
 use App\Http\Resources\CollectionResource;
 use App\Models\Collection;
 
@@ -37,7 +38,7 @@ class CollectionController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(CollectionStoreRequest $request, Collection $collection)
+    public function update(CollectionUpdateRequest $request, Collection $collection)
     {
         $collection->update($request->validated());
 
