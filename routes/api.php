@@ -28,5 +28,5 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::apiResource('collections', CollectionController::class);
     Route::apiResource('contributors', ContributorController::class);
 
-    Route::post('logout', 'logout');
+    Route::post('/logout', [AuthController::class, 'logout']);
 });
